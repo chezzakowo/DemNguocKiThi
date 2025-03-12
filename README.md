@@ -47,8 +47,8 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
 ### 💾 Đối với file .ino (Arduino)
 1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/ArduinoThing/releases):
    - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/ArduinoThing/releases/0.1.0)**
-     - File MicroPython: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
-     - File .ino: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/demnguoc.ino)
+     - File MicroPython: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
+     - File .ino: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/demnguoc.ino)
 
 2. Mở file `.ino` và chỉnh sửa cấu hình Wi-Fi:
 ```cpp
