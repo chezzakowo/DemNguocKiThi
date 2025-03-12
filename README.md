@@ -1,7 +1,7 @@
 # 📆 Đếm ngược kì thi tuyển sinh bằng ESP32 📆
 
 <p align="center">
-  <img src="./docs/assets/images/header.jpg" alt="Xin chào!">
+  <img src="./docs/assets/images/header_new.png" alt="Xin chào!">
 </p>
 
 Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đếm ngược ngày thi? Đây sẽ là hướng dẫn giúp bạn tự làm một cái ngay tại nhà mà giá chỉ đâu đấy 50-200k thôi nha!
