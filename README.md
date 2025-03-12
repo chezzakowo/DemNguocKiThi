@@ -144,7 +144,7 @@ Lich_Thi_API = "" #Thay bằng URL chứa file lichthi.json
 Thay biến **Lich_Thi_API** với **địa chỉ URL tới file lichthi.json** của bạn
 ```cpp
 // The API URL that returns JSON data for exam schedule
-#define LICH_THI_API
+#define LICH_THI_API "<Thay bằng URL chứa file lichthi.json>" 
 ```
 
 ## 🤝 Đóng góp 
