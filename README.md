@@ -5,7 +5,6 @@
 </p>
 
 Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đếm ngược ngày thi? Đây sẽ là hướng dẫn giúp bạn tự làm một cái ngay tại nhà mà giá chỉ đâu đấy 50-200k thôi nha!
-
 **⚠️ Lưu ý:** API mình sử dụng ở đây là do **mình tự chỉnh theo thông tin của Bộ Giáo Dục hoặc ước tính nha!** Và nó chỉ hoạt động dựa trên lịch địa bàn **Thành phố Cần Thơ**. Thông tin chi tiết mình sẽ để ở dưới cho bạn nào muốn chỉnh
 
 ---
@@ -77,7 +76,7 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
 3. Nạp chương trình lên ESP32, chờ nó kết nối Wi-Fi. Nếu thấy kết quả như dưới đây, bạn đã thành công!
 
 <p align="center">
-  <img src="./docs/assets/images/header.jpg" alt="Kết nối thành công">
+  <img src="./docs/assets/images/header_new.png" alt="Kết nối thành công">
 </p>
 <p align="center">
   <img src="./docs/assets/images/March7th/March7th_3.png" width="350" height="350" alt="Đang chạy">
