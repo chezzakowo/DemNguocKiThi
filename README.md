@@ -145,7 +145,7 @@ Lich_Thi_API = "" #Thay bằng URL chứa file lichthi.json
 - **💾 Đối với file .ino (Arduino)**
 Thay biến **Lich_Thi_API** với **địa chỉ URL tới file lichthi.json** của bạn
 ```cpp
-// The API URL that returns JSON data for exam schedule
+// API URL Chứa lịch thi
 #define LICH_THI_API "<Thay bằng URL chứa file lichthi.json>" 
 ```
 
