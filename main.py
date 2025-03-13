@@ -16,8 +16,8 @@ Lich_Thi_API = "https://raw.githubusercontent.com/chezzakowo/demnguockithiC3CanT
 
 
 # Thời gian bật/tắt màn hình
-Turn_Off_Screen_Time = [""]
-Turn_On_Screen_Time = [""]
+Thoi_Gian_Tat_Man_Hinh = [""]
+Thoi_Gian_Bat_Man_Hinh = [""]
 
 # Cấu hình màn hình LCD
 I2C_SCL_PIN = 22  # Chân SCL
@@ -29,7 +29,7 @@ lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
 cached_time = None   # Lưu thời gian tạm thời
 last_sync_time = 0   # Thời điểm lần cuối đồng bộ với API 
 screen_state = True  # Trạng thái màn hình (True: bật, False: tắt)
-screen_off = False   # Cờ trạng thái tắt màn hình
+screen_off = False   # Trạng thái tắt màn hình
 
 def connect_to_wifi():
     wlan = network.WLAN(network.STA_IF)
@@ -89,7 +89,6 @@ def get_time_from_api():
 
 def dem_ngay(ngay_thi, ngay_hien_tai):
     try:
-        # Append dummy values for weekday and yearday required by mktime
         target_timestamp = utime.mktime(ngay_thi + (0, 0))
         current_timestamp = utime.mktime(ngay_hien_tai + (0, 0))
         countdown_seconds = target_timestamp - current_timestamp
@@ -108,14 +107,14 @@ def check_screen_status(current_time):
     global screen_state, screen_off 
     time_str = "{:02}:{:02}".format(current_time[3], current_time[4])
     
-    if time_str in Turn_Off_Screen_Time and screen_state:
+    if time_str in Thoi_Gian_Tat_Man_Hinh and screen_state:
         utime.sleep(0.5)
         lcd.hal_backlight_off()
         print(f"Tắt màn hình lúc {time_str}")
         screen_state = False
         screen_off = True
     
-    if time_str in Turn_On_Screen_Time and not screen_state:
+    if time_str in Thoi_Gian_Bat_Man_Hinh and not screen_state:
         lcd.hal_backlight_on()
         print(f"Bật màn hình lúc {time_str}")
         screen_state = True
@@ -125,7 +124,6 @@ def main():
     global cached_time, last_sync_time, ngay_thi
     connect_to_wifi()
     
-    # Fetch lichthi data from the server
     lichthi_data = fetch_lich_thi(Lich_Thi_API)
     if lichthi_data:
         ngay_thi = (
@@ -149,10 +147,9 @@ def main():
     lcd.move_to(0, 0)
     lcd.putstr(screen_display)
     
-    # Get initial time from API
     cached_time = get_time_from_api()
     if cached_time is None:
-        print("Failed to get time from API initially.")
+        print("Lỗi lấy thông tin thời gian từ API.")
     
     last_sync_time = utime.time()
     
@@ -171,7 +168,6 @@ def main():
 
             check_screen_status(cached_time)
 
-            # Format countdown components to two digits
             days_str = f"{days:02}d"
             hours_str = f"{hours:02}h"
             minutes_str = f"{minutes:02}m"
@@ -180,7 +176,7 @@ def main():
             countdown_str = f"{days_str} {hours_str} {minutes_str} {seconds_str}"
             print(countdown_str)
 
-            if not screen_off:  # chỉ cập nhật màn hình nếu đang bật
+            if not screen_off: 
                 lcd.move_to(0, 1)
                 lcd.putstr(countdown_str)
 
