@@ -22,7 +22,7 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
 
 ## 📌 Yêu cầu phần cứng
 - **Bo mạch điều khiển:**
-  - 1 ESP32 (bạn có thể chọn phiên bản 32 hoặc 38 chân, không khác là mấy đâu trừ khi bạn nghich 🐧)
+  - 1 ESP32 (bạn có thể chọn phiên bản 32 hoặc 38 chân, không khác là mấy đâu trừ khi bạn nghịch 🐧)
 - **Màn hình:** 1 LCD I2C (Xanh lá hoặc xanh dương tùy bạn và hãy nhớ **mua loại hàn sẵn mạch I2C để đỡ tốn công hàn thêm nha**)
 - **Phụ kiện khác:**
   - 1 Breadboard (Tùy chọn)
