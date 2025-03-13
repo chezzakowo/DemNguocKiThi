@@ -42,13 +42,13 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
   <img src="./docs/assets/images/diagram/esp32_diagram-vi.png" alt="Sơ đồ kết nối ESP32">
 </p>
 
-> **Lưu ý:** Đây là sơ đồ mẫu cho ESP32 loại 38 chân nhé! (SCL: chân G23, SDA: chân 21).
+> **Lưu ý:** Đây là sơ đồ mẫu cho ESP32 loại 38 chân nhé! (SCL: chân G23, SDA: chân G21).
 
 ---
 
 ### 💾 Đối với file .ino (Arduino)
 1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/DemNguocKiThiArduino/releases):
-   - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/ArduinoThing/releases/0.1.0)**
+   - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/DemNguocKiThiArduino//releases/0.1.0)**
      - File MicroPython: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
      - File .ino: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/demnguoc.ino)
 
