@@ -4,28 +4,29 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-// ================== USER CONFIG ==================
+// ================== Config cơ bản ==================
 
-// Your Wi-Fi credentials
+// Thông tin Wi-Fi để ESP32 kết nối
 #define WIFI_SSID     "MẬT KHẨU WIFI CỦA BẠN"  // Thay bằng mật khẩu Wi-Fi của bạn
 #define WIFI_PASSWORD "MẬT KHẨU WIFI CỦA BẠN"  // Thay bằng mật khẩu Wi-Fi của bạn
 
-// The API URL that returns JSON data for exam schedule
+// Thời gian tắt / bật màn hình
+// (Cái này sử dụng định dạng 24 giờ, HH:MM)
+const char* TURN_OFF_SCREEN_TIME[] = {""};
+const char* TURN_ON_SCREEN_TIME[]  = {""};
+
+// API URL Chứa lịch thi
 #define LICH_THI_API  "https://raw.githubusercontent.com/chezzakowo/demnguockithiC3CanTho/refs/heads/main/api/demnguoc/lichthi.json"
 
-// LCD settings
+// Cài đặt chân màn hình LCD I2C cho ESP32 (ĐỪNG CHỈNH NẾU BẠN KHÔNG BIẾT MÌNH NÓ GÌ HẾT) 
 #define I2C_SCL_PIN   22
 #define I2C_SDA_PIN   21
 #define LCD_I2C_ADDR  0x27
 
-// Times of day to turn the screen OFF and ON
-// (use 24-hour format, HH:MM)
-const char* TURN_OFF_SCREEN_TIME[] = {""};
-const char* TURN_ON_SCREEN_TIME[]  = {""};
 
-// ================== GLOBALS ==================
+// ================== Tên biến ==================
 
-// A simple DateTime struct for storing time
+// Cấu trúc lưu thời gian
 struct DateTime {
   int year;
   int month;
@@ -35,50 +36,47 @@ struct DateTime {
   int second;
 };
 
-// We'll store the exam date/time and the current time here
-DateTime ngayThi  = {2025, 6, 5, 0, 0, 0};  // Default fallback
+// Lưu thời gian
+DateTime ngayThi  = {2025, 6, 5, 0, 0, 0};  // Lịch tạm đề phòng nếu nó truy xuất lỗi từ API
 DateTime cachedTime;
 
-// This string will hold the message to display on the top row of the LCD
+// Cái này để hiện chữ
 String screenDisplay = "Dem nguoc ki thi";
 
-// Variables to track when we last synced time from API, etc.
+// CÁi này để đồng bộ với API thời gian.
 unsigned long lastSyncTime = 0;
 bool screenState = true;
 bool screenOff   = false;
 
-// Create an I2C LCD instance
 LiquidCrystal_I2C lcd(LCD_I2C_ADDR, 16, 2);
-
-// ================== WIFI & HTTP FUNCTIONS ==================
 
 void connectToWiFi() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   lcd.clear();
-  lcd.print("Connecting WiFi...");
-  Serial.println("Connecting to WiFi...");
+  lcd.print("Dang ket noi toi Wi-Fi...");
+  Serial.println("Dang ket noi toi Wi-Fi...");
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
 
-  Serial.println("\nWiFi connected!");
+  Serial.println("\nDa ket noi!");
   lcd.clear();
-  lcd.print("WiFi connected!");
+  lcd.print("Da ket noi!");
   delay(1000);
   lcd.clear();
 }
 
 DateTime fetchTimeFromAPI() {
-  // Attempt to get current time from Time API
-  // Return a DateTime struct
+  // Lấy thông tin thời gian từ API timeapi.io
+  // Cấu trúc lưu thời gian
   DateTime timeData = {0, 0, 0, 0, 0, 0};
 
   if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("WiFi not connected, cannot fetch time.");
+    Serial.println("Chua ket noi toi Wi-FI!");
     return timeData;
   }
 
@@ -97,10 +95,10 @@ DateTime fetchTimeFromAPI() {
       timeData.minute = doc["minute"];
       timeData.second = doc["seconds"];
     } else {
-      Serial.println("JSON parse error for time API.");
+      Serial.println("Loi phan tich JSON tu API.");
     }
   } else {
-    Serial.print("Time API GET error: ");
+    Serial.print("Loi: ");
     Serial.println(httpCode);
   }
   http.end();
@@ -108,10 +106,10 @@ DateTime fetchTimeFromAPI() {
   return timeData;
 }
 
-// Fetch exam schedule from LICH_THI_API, parse JSON, update global vars
+// Lấy thông tin lịch thi từ API
 void fetchLichThi() {
   if (WiFi.status() != WL_CONNECTED) {
-    Serial.println("WiFi not connected, cannot fetch exam schedule.");
+    Serial.println("Chua ket noi toi Wi-FI!");
     return;
   }
 
@@ -123,7 +121,6 @@ void fetchLichThi() {
     StaticJsonDocument<512> doc;
     DeserializationError error = deserializeJson(doc, payload);
     if (!error) {
-      // Update ngayThi from JSON
       ngayThi.year   = doc["nam"]   | 2025;
       ngayThi.month  = doc["thang"] | 6;
       ngayThi.day    = doc["ngay"]  | 5;
@@ -141,12 +138,12 @@ void fetchLichThi() {
         screenDisplay = "Trang thai khong xac dinh";
       }
     } else {
-      Serial.println("JSON parse error for exam schedule.");
+      Serial.println("Loi phan tich API lichthi!.");
       // Fallback
       screenDisplay = "Dem nguoc ki thi";
     }
   } else {
-    Serial.print("Exam schedule GET error: ");
+    Serial.print("Loi lay lich thi: ");
     Serial.println(httpCode);
     // Fallback
     screenDisplay = "Dem nguoc ki thi";
@@ -154,10 +151,10 @@ void fetchLichThi() {
   http.end();
 }
 
-// ================== COUNTDOWN & SCREEN CONTROL ==================
+// ================== Đếm ngược ==================
 
 unsigned long calculateCountdown(DateTime target, DateTime current) {
-  // Convert the DateTime to 'time_t' (seconds since epoch)
+  // Đổi thời gian
   struct tm target_tm = {0};
   target_tm.tm_year   = target.year - 1900;
   target_tm.tm_mon    = target.month - 1;
@@ -177,18 +174,16 @@ unsigned long calculateCountdown(DateTime target, DateTime current) {
   time_t current_time  = mktime(&current_tm);
 
   if (target_time > current_time) {
-    return target_time - current_time; // seconds until target
+    return target_time - current_time; // Từ đây -> ngày thi
   } else {
-    return 0; // already passed
+    return 0; // Đã qua ngày thi
   }
 }
 
 void checkScreenStatus(DateTime currentTime) {
-  // Construct current HH:MM string
   char timeStr[6];
   sprintf(timeStr, "%02d:%02d", currentTime.hour, currentTime.minute);
 
-  // Check if we should turn off
   for (int i = 0; i < sizeof(TURN_OFF_SCREEN_TIME) / sizeof(TURN_OFF_SCREEN_TIME[0]); i++) {
     if (strcmp(timeStr, TURN_OFF_SCREEN_TIME[i]) == 0 && screenState) {
       lcd.noBacklight();
@@ -198,7 +193,6 @@ void checkScreenStatus(DateTime currentTime) {
     }
   }
 
-  // Check if we should turn on
   for (int i = 0; i < sizeof(TURN_ON_SCREEN_TIME) / sizeof(TURN_ON_SCREEN_TIME[0]); i++) {
     if (strcmp(timeStr, TURN_ON_SCREEN_TIME[i]) == 0 && !screenState) {
       lcd.backlight();
@@ -224,32 +218,24 @@ void displayCountdown(unsigned long countdownSeconds) {
   }
 }
 
-// ================== ARDUINO SETUP & LOOP ==================
 
 void setup() {
   Serial.begin(115200);
-
-  // Initialize I2C and LCD
   Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
+
   lcd.init();
   lcd.backlight();
 
-  // Connect to WiFi
   connectToWiFi();
-
-  // Fetch the exam schedule from the API
   fetchLichThi();
 
-  // Display the message from 'trang_thai' logic on top row
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(screenDisplay);
 
-  // Get initial time from time API
   cachedTime = fetchTimeFromAPI();
   if (cachedTime.year == 0) {
-    Serial.println("Failed to fetch initial time from API. Using fallback time = 2025-06-05.");
-    // fallback if you want
+    Serial.println("Loi lay lich thi tu API. Dang su dung ngay du phong: 2025-06-05.");
     cachedTime = ngayThi; 
   }
 
@@ -257,20 +243,17 @@ void setup() {
 }
 
 void loop() {
-  // Resync time from API every 30 minutes
+  // Đồng bộ lại thời gian sau mỗi 30 phút
   if (millis() - lastSyncTime >= 1800000UL) {
     cachedTime   = fetchTimeFromAPI();
     lastSyncTime = millis();
   }
 
-  // Calculate countdown
   unsigned long countdown = calculateCountdown(ngayThi, cachedTime);
   displayCountdown(countdown);
 
-  // Check whether we should turn screen on/off
   checkScreenStatus(cachedTime);
 
-  // Increment our cached time by 1 second
   cachedTime.second++;
   if (cachedTime.second >= 60) {
     cachedTime.second = 0;
@@ -283,6 +266,7 @@ void loop() {
         cachedTime.day++;
         // NOTE: This does not handle month rollover or leap years.
         // For a robust solution, you might re-fetch from API daily.
+        // Cảm ơn ChatGPT vì dòng này nhưng mà tôi ngu C++ 🐧
       }
     }
   }
