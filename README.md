@@ -7,7 +7,7 @@
 Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đếm ngược ngày thi? Đây sẽ là hướng dẫn giúp bạn tự làm một cái ngay tại nhà mà giá chỉ đâu đấy 50-200k thôi nha!
 
 
-**⚠️ Lưu ý:** API mình sử dụng ở đây là do **mình tự chỉnh theo thông tin của Bộ Giáo Dục Cần Thơ hoặc ước tính nha!** Và nó dựa trên lịch của địa bàn **Thành phố Cần Thơ**. Thông tin chi tiết mình sẽ để ở dưới cho bạn nào muốn chỉnh
+**⚠️ Lưu ý:** API mình sử dụng ở đây là do **mình tự chỉnh theo thông tin của Bộ Giáo Dục Cần Thơ hoặc ước tính nha! (và nó sẽ được cập nhật mỗi năm học)** Và nó dựa trên lịch của địa bàn **Thành phố Cần Thơ**. Thông tin chi tiết mình sẽ để ở dưới cho bạn nào muốn chỉnh
 
 ---
 
