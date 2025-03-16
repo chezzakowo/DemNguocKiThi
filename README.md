@@ -118,7 +118,7 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
 ## 💭 Phiên bản và lộ trình cập nhật
 - 🆙 Phiên bản **chính thức** hiện tại: [v1.0.0](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/tag/0.1.0)
 - 🛠️ Phiên bản **thử nghiệm công khai**: Chưa có!
-- <img src="./docs/assets/images/reverse.png" alt="Nhật kí thay đổi" width="20"/> Nhật kí thay đổi: [Đọc tại CHANGELOG.md](https://github.com/chezzakowo/DemNguocKiThiArduino/blob/main/CHANGELOG.md)
+- ⏱️ Nhật kí thay đổi: [Đọc tại CHANGELOG.md](https://github.com/chezzakowo/DemNguocKiThiArduino/blob/main/CHANGELOG.md)
 
 - 🗓️ Lộ trình cập nhật sắp tới
 <!-- x là để tick, còn bỏ trống với khoảng cách là ô không tích -->
