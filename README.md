@@ -1,13 +1,11 @@
 # 📆 Đếm ngược kì thi tuyển sinh bằng ESP32 📆
 
 <p align="center">
-  <img src="./docs/assets/images/header_new.png" alt="Xin chào!">
+  <img src="./docs/assets/images/header.jpg" alt="Xin chào!">
 </p>
 
 Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đếm ngược ngày thi? Đây sẽ là hướng dẫn giúp bạn tự làm một cái ngay tại nhà mà giá chỉ đâu đấy 50-200k thôi nha!
-
-
-**⚠️ Lưu ý:** API mình sử dụng ở đây là do **mình tự chỉnh theo thông tin của Bộ Giáo Dục Cần Thơ hoặc ước tính nha! (và nó sẽ được cập nhật mỗi năm học)** Và nó dựa trên lịch của địa bàn **Thành phố Cần Thơ**. Thông tin chi tiết mình sẽ để ở dưới cho bạn nào muốn chỉnh
+**⚠️ Lưu ý:** API mình sử dụng ở đây là do **mình tự chỉnh theo thông tin của Bộ Giáo Dục hoặc ước tính nha!** Và nó chỉ hoạt động dựa trên lịch địa bàn **Thành phố Cần Thơ**. Thông tin chi tiết mình sẽ để ở dưới cho bạn nào muốn chỉnh
 
 ---
 
@@ -16,13 +14,15 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
 - [⚙️ Cài đặt](#️-cài-đặt)
   - [💾 Đối với file .ino (Arduino)](#-đối-với-file-ino-arduino)
   - [🐍 Đối với MicroPython](#-đối-với-micropython)
+- [💭 Phiên bản và lộ trình cập nhật](#-phiên-bản-và-lộ-trình-cập-nhật)
 - [📆 Đổi ngày thi](#-đổi-ngày-thi)
+- [🛠️ Kế hoạch cập nhật](#kế-hoạch-cập-nhật)
 - [🤝 Đóng góp](#-đóng-góp)
 ---
 
 ## 📌 Yêu cầu phần cứng
 - **Bo mạch điều khiển:**
-  - 1 ESP32 (bạn có thể chọn phiên bản 32 hoặc 38 chân, không khác là mấy đâu trừ khi bạn nghịch 🐧)
+  - 1 ESP32 (bạn có thể chọn phiên bản 32 hoặc 38 chân, không khác là mấy đâu trừ khi bạn nghich 🐧)
 - **Màn hình:** 1 LCD I2C (Xanh lá hoặc xanh dương tùy bạn và hãy nhớ **mua loại hàn sẵn mạch I2C để đỡ tốn công hàn thêm nha**)
 - **Phụ kiện khác:**
   - 1 Breadboard (Tùy chọn)
@@ -42,15 +42,15 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
   <img src="./docs/assets/images/diagram/esp32_diagram-vi.png" alt="Sơ đồ kết nối ESP32">
 </p>
 
-> **Lưu ý:** Đây là sơ đồ mẫu cho ESP32 loại 38 chân nhé! (SCL: chân G23, SDA: chân G21).
+> **Lưu ý:** Đây là sơ đồ mẫu cho ESP32 loại 38 chân nhé! (SCL: chân G23, SDA: chân 21).
 
 ---
 
 ### 💾 Đối với file .ino (Arduino)
-1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/DemNguocKiThiArduino/releases):
-   - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/DemNguocKiThiArduino//releases/0.1.0)**
-     - File MicroPython: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
-     - File .ino: [Tải về](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/download/0.1.0/demnguoc.ino)
+1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/ArduinoThing/releases):
+   - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/ArduinoThing/releases/0.1.0)**
+     - File MicroPython: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
+     - File .ino: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/ArduinoDemNguoc.ino)
 
 2. Mở file `.ino` và chỉnh sửa cấu hình Wi-Fi:
 ```cpp
@@ -78,7 +78,7 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
 3. Nạp chương trình lên ESP32, chờ nó kết nối Wi-Fi. Nếu thấy kết quả như dưới đây, bạn đã thành công!
 
 <p align="center">
-  <img src="./docs/assets/images/header_new.png" alt="Kết nối thành công">
+  <img src="./docs/assets/images/header.jpg" alt="Kết nối thành công">
 </p>
 <p align="center">
   <img src="./docs/assets/images/March7th/March7th_3.png" width="350" height="350" alt="Đang chạy">
@@ -115,6 +115,24 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
   <img src="./docs/assets/images/March7th/March7th_3.png" width="350" height="350" alt="Đang chạy">
 </p>
 
+## 💭 Phiên bản và lộ trình cập nhật
+- 🆙 Phiên bản **chính thức** hiện tại: [v1.0.0](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/tag/0.1.0)
+- 🛠️ Phiên bản **thử nghiệm công khai**: Chưa có!
+- <img src="./docs/assets/reverse.png" alt="Nhật kí thay đổi" width="20"/> Nhật kí thay đổi: [Đọc tại CHANGELOG.md](https://github.com/chezzakowo/DemNguocKiThiArduino/blob/main/CHANGELOG.md)
+
+- 🗓️ Lộ trình cập nhật sắp tới
+<!-- x là để tick, còn bỏ trống với khoảng cách là ô không tích -->
+  - ⬆️  Cập nhật v1.0.1:
+    - 🔧 **Thay thế và tối ưu:**
+      - [ ] Thay thế việc kết nối tới Wi-Fi bằng nhập thủ công bằng cập nhật thông qua Web Panel cũng như là khả năng thay thế API, chỉnh thời gian bật tắt thông qua Web 
+      - [ ] Cải thiện tốc độ / tối ưu lại việc truy xuất từ API thời gian và API ``lichthi.json``
+      - [ ] Sửa lại việc code chạy thiếu ổn định sau 2 - 5 ngày chạy liên tiếp 
+      - [ ] Sửa lại việc code đồng bộ sai thời gian hoặc bị chậm hơn
+    - 🆕 **Tính năng mới:**
+      - [ ] Thêm QOTD (Quote Of The Day - Trích Dẫn Trong Ngày) để động viên tinh thần
+      - [ ] Có thể nhấn giữ nút BOOT để chuyển đổi chế độ đếm ngược / đồng hồ để bàn
+      - [ ] (Có thể) Cho phép đồng bộ thời gian thực với module RTC DS1307 / DS1302
+
 ## 📆 Đổi ngày thi
 API mình sử dụng là từ [chezzakowo/demnguockithiC3CanTho](https://github.com/chezzakowo/demnguockithiC3CanTho/blob/main/api/demnguoc/lichthi.json) và thông tin lịch thi được lưu dưới định dạng ``lichthi.json``
 
@@ -145,9 +163,12 @@ Lich_Thi_API = "" #Thay bằng URL chứa file lichthi.json
 - **💾 Đối với file .ino (Arduino)**
 Thay biến **Lich_Thi_API** với **địa chỉ URL tới file lichthi.json** của bạn
 ```cpp
-// API URL Chứa lịch thi
-#define LICH_THI_API "<Thay bằng URL chứa file lichthi.json>" 
+// The API URL that returns JSON data for exam schedule
+#define LICH_THI_API
 ```
+
+## 🛠️ Kế hoạch cập nhật
+
 
 ## 🤝 Đóng góp 
 Đây là những người đóng góp vô dự án! Bạn có thể đóng góp bằng cách báo lỗi và update nếu muốn nhe!
