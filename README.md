@@ -79,7 +79,7 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
 3. Nạp chương trình lên ESP32, chờ nó kết nối Wi-Fi. Nếu thấy kết quả như dưới đây, bạn đã thành công!
 
 <p align="center">
-  <img src="./docs/assets/images/header.jpg" alt="Kết nối thành công">
+  <img src="./docs/assets/images/header_new.png" alt="Kết nối thành công">
 </p>
 <p align="center">
   <img src="./docs/assets/images/March7th/March7th_3.png" width="350" height="350" alt="Đang chạy">
