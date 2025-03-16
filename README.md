@@ -168,9 +168,6 @@ Thay biến **Lich_Thi_API** với **địa chỉ URL tới file lichthi.json** 
 #define LICH_THI_API
 ```
 
-## 🛠️ Kế hoạch cập nhật
-
-
 ## 🤝 Đóng góp 
 Đây là những người đóng góp vô dự án! Bạn có thể đóng góp bằng cách báo lỗi và update nếu muốn nhe!
 
