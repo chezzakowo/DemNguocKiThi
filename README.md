@@ -48,10 +48,10 @@ Bạn muốn có một chiếc "đồng hồ" nhỏ để trên bàn giúp đế
 ---
 
 ### 💾 Đối với file .ino (Arduino)
-1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/ArduinoThing/releases):
-   - Phiên bản mới nhất: **[0.1.0](https://github.com/chezzakowo/ArduinoThing/releases/0.1.0)**
-     - File MicroPython: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/Code_MicroPython-ESP32.zip)
-     - File .ino: [Tải về](https://github.com/chezzakowo/ArduinoThing/releases/download/0.1.0/ArduinoDemNguoc.ino)
+1. Tải xuống firmware mới nhất từ [RELEASES](https://github.com/chezzakowo/DemNguocKiThi/releases):
+   - Phiên bản mới nhất: **[v1.0](https://github.com/chezzakowo/DemNguocKiThi/releases/v1.0)**
+     - File MicroPython: [Tải về](https://github.com/chezzakowo/DemNguocKiThi/releases/download/v1.0/Code_MicroPython-ESP32.zip)
+     - File .ino: [Tải về](https://github.com/chezzakowo/DemNguocKiThi/releases/download/v1.0/ArduinoDemNguoc.ino)
 
 2. Mở file `.ino` và chỉnh sửa cấu hình Wi-Fi:
 ```cpp
@@ -117,9 +117,9 @@ Bạn có thể chỉnh 1 cái danh sách bật tắt theo giờ bạn thích v�
 </p>
 
 ## 💭 Phiên bản và lộ trình cập nhật
-- 🆙 Phiên bản **chính thức** hiện tại: [v1.0.0](https://github.com/chezzakowo/DemNguocKiThiArduino/releases/tag/0.1.0)
+- 🆙 Phiên bản **chính thức** hiện tại: [v1.0.0](https://github.com/chezzakowo/DemNguocKiThi/releases/tag/v1.0)
 - 🛠️ Phiên bản **thử nghiệm công khai**: Chưa có!
-- ⏱️ Nhật kí thay đổi: [Đọc tại CHANGELOG.md](https://github.com/chezzakowo/DemNguocKiThiArduino/blob/main/CHANGELOG.md)
+- ⏱️ Nhật kí thay đổi: [Đọc tại CHANGELOG.md](https://github.com/chezzakowo/DemNguocKiThi/blob/main/CHANGELOG.md)
 
 - 🗓️ Lộ trình cập nhật sắp tới
 <!-- x là để tick, còn bỏ trống với khoảng cách là ô không tích -->
