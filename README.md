@@ -1,8 +1,5 @@
 # 📆 Đếm ngược kì thi tuyển sinh bằng ESP32 📆
 
-> [!CAUTION]
-> Hiện tại chỉ còn 63 ngày (tính từ thời điểm 04/02/2025) là đến ngày thi tuyển sinh của mình cũng như là dự án này chỉ có một mình mình làm nên thành ra là mình sẽ tạm thời **TẠM NGƯNG** việc cập nhật phiên bản v1.1 và sửa lỗi v1.0. Nên nếu có lỗi thì mong các bạn thông cảm nhé! Code sẽ được cập nhật tiếp sau **giữa tháng 6**! Cảm ơn bạn đã đọc qua nhé!
-
 <p align="center">
   <img src="./docs/assets/images/header_new.png" alt="Xin chào!">
 </p>
